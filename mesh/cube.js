@@ -9,7 +9,7 @@ export class Cube {
     this.xRotationIncrement = 0.002;
     this.yRotation = 0.8;
     this.yRotationIncrement = 0.002;
-    this.cubeCote = 3.5;
+    this.cubeCote = 5;
     this.material = matcapMaterial;
     this.geometry = new RoundedBoxGeometry(this.cubeCote, this.cubeCote, this.cubeCote, 1, .25);
     this.mesh =  new THREE.Mesh(this.geometry, this.material);
@@ -23,7 +23,7 @@ export class Cube {
     return lerp(-0.3, 0.3, x)
   }
 
-  rotateCube() {
+  animate() {
     this.mesh.rotation.x = this.rotateLerp(this.xRotation);
     if (this.xRotation > 1 || this.xRotation < 0) {
       this.xRotationIncrement *= -1;
@@ -34,6 +34,12 @@ export class Cube {
       this.yRotationIncrement *= -1;
     }
     this.yRotation += this.yRotationIncrement;
+
+    if (this.isActive) {
+      this.mesh.material = matcapHighlight;
+    } else {
+      this.mesh.material = this.material
+    }
   }
 
   onIntersect(intersects) {
@@ -44,9 +50,9 @@ export class Cube {
       }
     }
     if (containsCube) {
-      this.mesh.material = matcapHighlight;
+      this.isActive = true;
     } else {
-      this.mesh.material = this.material;
+      this.isActive = false;
     }
   }
 }
