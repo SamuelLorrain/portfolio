@@ -1,14 +1,17 @@
+import './style.css';
 import { init } from './scene';
 
 const el = document.querySelector('.three');
-const animate = init(el, 500, 500);
-animate()
+const sceneFacade = init(el, 600, 600);
+sceneFacade.animate()
 
 const li = document.querySelectorAll('li');
-for(const i of li) {
-    i.addEventListener("mouseover", () => {
-        const link = i.lastChild;
+for(const [index, node] of li.entries()) {
+    node.addEventListener("mouseover", () => {
+        const link = node.lastChild;
         link.focus();
+        node.focus();
+        sceneFacade.chooseVisibleMesh(index);
     })
 }
 

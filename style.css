@@ -1,0 +1,51 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: black;
+}
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+menu {
+    font-size: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+menu > ul {
+    list-style-type: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    width: 100vw;
+}
+li {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+}
+a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding-left: 5rem;
+}
+a:focus {
+    outline: none;
+    background: rgba(100,0,100, 0.5);
+}
+a:visited {
+    color: white;
+}
